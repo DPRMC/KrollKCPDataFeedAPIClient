@@ -15,5 +15,15 @@
             "email": "michaeldrennen74@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "DPRMC\\KrollKCPDataFeedAPIClient\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Tests\\": "tests"
+        }
+    }
 }
