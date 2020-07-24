@@ -88,6 +88,7 @@ class Bond {
      * @param array $bondData
      */
     public function __construct( array $bondData ) {
+
         $this->uuid                                  = $bondData[ 'uuid' ];
         $this->name                                  = Helper::convertElementToString( $bondData[ 'name' ] );
         $this->kbra_credit_profile                   = Helper::convertElementToString( $bondData[ 'kbra_credit_profile' ] );

@@ -34,21 +34,22 @@ class ClientTest extends TestCase {
      * @test
      */
     public function callingRssShouldReturnLinks() {
-        $endpoints = self::$client->rss();
-
-        $this->assertIsArray( $endpoints );
-        $firstEndpoint = array_shift( $endpoints );
-        $this->assertInstanceOf( DealEndpoint::class, $firstEndpoint );
+//        $endpoints = self::$client->rss();
+//        $this->assertIsArray( $endpoints );
+//        $firstEndpoint = array_shift( $endpoints );
+//        $this->assertInstanceOf( DealEndpoint::class, $firstEndpoint );
 
         // Now get a limited set of endpoints
         $today         = Carbon::now();
         $since         = $today->subDays( 1 );
         $lessEndpoints = self::$client->rss( $since );
 
-        $this->assertLessThan( count( $endpoints ), count( $lessEndpoints ) );
+        //$this->assertLessThan( count( $endpoints ), count( $lessEndpoints ) );
 
 
-        self::$client->downloadDealEndpoint( $firstEndpoint );
+        $deal = self::$client->downloadDealEndpoint( array_shift( $lessEndpoints ) );
+
+        print_r( $deal );
 
     }
 

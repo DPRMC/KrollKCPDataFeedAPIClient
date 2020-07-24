@@ -145,6 +145,9 @@ class Client {
         $json      = json_encode( $xml );
         $array     = json_decode( $json, TRUE );
 
+
+        return new Deal( $array );
+
         foreach ( $array as $key => $value ):
             if ( is_array( $value ) ):
                 $count = count( $value );
