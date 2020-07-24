@@ -22,7 +22,7 @@ class ClientTest extends TestCase {
      * @test
      */
     public function constructorShouldCreateClient() {
-        $client = new Client();
+        $client = new Client( $_ENV[ 'KROLL_USER' ], $_ENV[ 'KROLL_PASS' ] );
 
         $this->assertInstanceOf( Client::class, $client );
     }
