@@ -3,3 +3,4 @@
 /docs/
 phpunit.xml
 .env
+.idea
