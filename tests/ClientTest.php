@@ -4,6 +4,7 @@ namespace Tests;
 
 use Carbon\Carbon;
 use DPRMC\KrollKCPDataFeedAPIClient\Client;
+use DPRMC\KrollKCPDataFeedAPIClient\Deal;
 use DPRMC\KrollKCPDataFeedAPIClient\DealEndpoint;
 use PHPUnit\Framework\TestCase;
 
@@ -34,23 +35,29 @@ class ClientTest extends TestCase {
      * @test
      */
     public function callingRssShouldReturnLinks() {
-//        $endpoints = self::$client->rss();
-//        $this->assertIsArray( $endpoints );
-//        $firstEndpoint = array_shift( $endpoints );
-//        $this->assertInstanceOf( DealEndpoint::class, $firstEndpoint );
+        $endpoints = self::$client->rss();
+        $this->assertIsArray( $endpoints );
+        $firstEndpoint = array_shift( $endpoints );
+        $this->assertInstanceOf( DealEndpoint::class, $firstEndpoint );
 
         // Now get a limited set of endpoints
         $today         = Carbon::now();
         $since         = $today->subDays( 1 );
         $lessEndpoints = self::$client->rss( $since );
 
-        //$this->assertLessThan( count( $endpoints ), count( $lessEndpoints ) );
+        $this->assertLessThan( count( $endpoints ), count( $lessEndpoints ) );
 
+        $deal = self::$client->downloadDealEndpoint( array_shift( $lessEndpoints ) );
+    }
+
+    public function downloadingEndpointShouldReturnDeal() {
+        $today         = Carbon::now();
+        $since         = $today->subDays( 1 );
+        $lessEndpoints = self::$client->rss( $since );
 
         $deal = self::$client->downloadDealEndpoint( array_shift( $lessEndpoints ) );
 
-        print_r( $deal );
-
+        $this->assertInstanceOf( Deal::class, $deal );
     }
 
 

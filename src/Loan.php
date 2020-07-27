@@ -72,6 +72,13 @@ class Loan {
 
     public function __construct( array $loanData ) {
 
+
+//        if(! isset($loanData['uuid'])):
+//            print_r($loanData);
+//            flush(); die();
+//        endif;
+
+
         $this->uuid                                       = $loanData[ 'uuid' ];
         $this->appraised_value                            = $loanData[ 'appraised_value' ][ 'value' ];
         $this->appraisal_date                             = Carbon::parse( $loanData[ 'appraisal_date' ] );

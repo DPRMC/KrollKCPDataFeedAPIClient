@@ -37,4 +37,8 @@ class Deal {
         return $loanGroups;
     }
 
+    public function getNumLoanGroups() {
+        return count( $this->loanGroups );
+    }
+
 }
