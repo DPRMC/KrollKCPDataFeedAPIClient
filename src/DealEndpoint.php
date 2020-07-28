@@ -28,6 +28,10 @@ class DealEndpoint {
      */
     public $pubDate;
 
+    const link    = 'link';
+    const pubDate = 'pubDate';
+    const uuid    = 'uuid';
+
 
     /**
      * So far I have seen 3 elements in the $item array: title, link, and pubDate
@@ -53,6 +57,14 @@ class DealEndpoint {
             return implode( ' ', $title );
         endif;
         return (string)$title;
+    }
+
+    /**
+     * @return string The UUID of the endpoint to be downloaded.1
+     */
+    public function getUuidAttribute(): string {
+        $parts = explode( '/', $this->link );
+        return end( $parts );
     }
 
 }
