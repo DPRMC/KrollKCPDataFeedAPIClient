@@ -62,7 +62,7 @@ class DealEndpoint {
     /**
      * @return string The UUID of the endpoint to be downloaded.1
      */
-    public function getUuidAttribute(): string {
+    public function uuid(): string {
         $parts = explode( '/', $this->link );
         return end( $parts );
     }
