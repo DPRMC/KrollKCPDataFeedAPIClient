@@ -67,4 +67,12 @@ class DealEndpoint {
         return end( $parts );
     }
 
+    /**
+     * @param string $uuid
+     * @return string
+     */
+    public static function getDownloadLink( string $uuid ): string {
+        return 'https://kcp.krollbondratings.com/oauth/download/' . $uuid;
+    }
+
 }
