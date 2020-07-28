@@ -28,9 +28,13 @@ class DealEndpoint {
      */
     public $pubDate;
 
-    const link    = 'link';
-    const pubDate = 'pubDate';
-    const uuid    = 'uuid';
+
+    /**
+     * @var string The UUID portion of the link.
+     */
+    public $uuid;
+
+    const DOWNLOAD_LINK_PREFIX = 'https://kcp.krollbondratings.com/oauth/download/';
 
 
     /**
@@ -42,6 +46,7 @@ class DealEndpoint {
         $this->title   = $this->getTitleFromItem( $item );
         $this->link    = $item[ 'link' ];
         $this->pubDate = Carbon::parse( $item[ 'pubDate' ] );
+        $this->uuid    = $this->getUuidFromLink( $item[ 'link' ] );
     }
 
 
@@ -59,20 +64,23 @@ class DealEndpoint {
         return (string)$title;
     }
 
+
     /**
-     * @return string The UUID of the endpoint to be downloaded.1
+     * @param string $link
+     * @return string
      */
-    public function uuid(): string {
-        $parts = explode( '/', $this->link );
+    protected function getUuidFromLink( string $link ): string {
+        $parts = explode( '/', $link );
         return end( $parts );
     }
+
 
     /**
      * @param string $uuid
      * @return string
      */
     public static function getDownloadLink( string $uuid ): string {
-        return 'https://kcp.krollbondratings.com/oauth/download/' . $uuid;
+        return self::DOWNLOAD_LINK_PREFIX . $uuid;
     }
 
 }
