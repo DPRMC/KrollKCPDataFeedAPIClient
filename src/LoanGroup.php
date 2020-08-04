@@ -185,4 +185,22 @@ class LoanGroup {
         return FALSE;
     }
 
+
+    /**
+     * I believe that Kroll may return multiple loan groups, and I think the format of the array changes.
+     * To parse correctly, I think I need to check if only one loan group is present.
+     * @TODO This might not be needed. Test when you find a Deal with multiple loan groups.
+     * @param array $loanGroup
+     * @return bool
+     */
+    public static function hasJustOneGroupInResults( array $loanGroup ): bool {
+        // You will see UUID if only one loan group is present.
+        if ( isset( $loanGroup[ 'uuid' ] ) ):
+            return TRUE;
+        endif;
+
+        // You'll see some index if there are multiple loan groups.
+        return FALSE;
+    }
+
 }

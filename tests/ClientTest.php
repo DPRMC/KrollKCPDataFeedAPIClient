@@ -47,15 +47,30 @@ class ClientTest extends TestCase {
 
         $this->assertLessThan( count( $endpoints ), count( $lessEndpoints ) );
 
-        $deal = self::$client->downloadDealEndpoint( array_shift( $lessEndpoints ) );
+        /**
+         * @var DealEndpoint $dealEndpoint
+         */
+        $dealEndpoint = array_shift( $lessEndpoints );
+        $deal         = self::$client->downloadDealEndpoint( $dealEndpoint->link );
+
+        $this->assertInstanceOf( Deal::class, $deal );
     }
 
+
+    /**
+     * @test
+     * @group deal
+     */
     public function downloadingEndpointShouldReturnDeal() {
         $today         = Carbon::now();
         $since         = $today->subDays( 1 );
         $lessEndpoints = self::$client->rss( $since );
 
-        $deal = self::$client->downloadDealEndpoint( array_shift( $lessEndpoints )->link );
+        //https://kcp.krollbondratings.com/oauth/download/94f746ec-f0ad-5a9b-8439-50a845a2954c
+
+        //array_shift( $lessEndpoints )->link
+
+        $deal = self::$client->downloadDealEndpoint( '94f746ec-f0ad-5a9b-8439-50a845a2954c' );
 
         $this->assertInstanceOf( Deal::class, $deal );
     }

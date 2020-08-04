@@ -28,16 +28,25 @@ class Deal {
         return $bonds;
     }
 
-    protected function setLoanGroups( array $loanGroupRows ): array {
-
+    protected function setLoanGroups( array $loanGroupRowsOrJustOneGroup ): array {
         $loanGroups = [];
-        foreach ( $loanGroupRows as $loanGroup ):
-            $loanGroups[] = new LoanGroup( $loanGroup );
-        endforeach;
+
+        if ( LoanGroup::hasJustOneGroupInResults( $loanGroupRowsOrJustOneGroup ) ):
+            $loanGroups[] = new LoanGroup( $loanGroupRowsOrJustOneGroup );
+        else:
+            foreach ( $loanGroupRowsOrJustOneGroup as $loanGroup ):
+                $loanGroups[] = new LoanGroup( $loanGroup );
+            endforeach;
+        endif;
+
         return $loanGroups;
     }
 
-    public function getNumLoanGroups() {
+
+    /**
+     * @return int
+     */
+    public function getNumLoanGroups(): int {
         return count( $this->loanGroups );
     }
 

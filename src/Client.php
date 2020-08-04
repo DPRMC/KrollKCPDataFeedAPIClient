@@ -62,6 +62,7 @@ class Client {
      * Client constructor.
      * @param string $user
      * @param string $pass
+     * @param bool $debug
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function __construct( string $user, string $pass, bool $debug = FALSE ) {
@@ -132,7 +133,8 @@ class Client {
     }
 
 
-    public function downloadDealEndpoint( string $link ) {
+    public function downloadDealEndpoint( string $uuid ) {
+        $link     = 'oauth/download/' . $uuid;
         $response = $this->guzzle->request( 'GET', $link, [
             'debug' => $this->debug,
             'query' => [
