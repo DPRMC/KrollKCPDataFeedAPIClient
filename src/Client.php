@@ -133,7 +133,7 @@ class Client {
     }
 
 
-    public function downloadDealEndpoint( string $uuid ) {
+    public function downloadDeal( string $uuid ) {
         $link     = 'oauth/download/' . $uuid;
         $response = $this->guzzle->request( 'GET', $link, [
             'debug' => $this->debug,

@@ -51,7 +51,7 @@ class ClientTest extends TestCase {
          * @var DealEndpoint $dealEndpoint
          */
         $dealEndpoint = array_shift( $lessEndpoints );
-        $deal         = self::$client->downloadDealEndpoint( $dealEndpoint->link );
+        $deal         = self::$client->downloadDeal( $dealEndpoint->link );
 
         $this->assertInstanceOf( Deal::class, $deal );
     }
@@ -70,7 +70,7 @@ class ClientTest extends TestCase {
 
         //array_shift( $lessEndpoints )->link
 
-        $deal = self::$client->downloadDealEndpoint( '94f746ec-f0ad-5a9b-8439-50a845a2954c' );
+        $deal = self::$client->downloadDeal( '94f746ec-f0ad-5a9b-8439-50a845a2954c' );
 
         $this->assertInstanceOf( Deal::class, $deal );
     }
