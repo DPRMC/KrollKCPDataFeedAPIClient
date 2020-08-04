@@ -132,8 +132,8 @@ class Client {
     }
 
 
-    public function downloadDealEndpoint( DealEndpoint $endpoint ) {
-        $response = $this->guzzle->request( 'GET', $endpoint->link, [
+    public function downloadDealEndpoint( string $link ) {
+        $response = $this->guzzle->request( 'GET', $link, [
             'debug' => $this->debug,
             'query' => [
                 'access_token' => $this->accessToken,

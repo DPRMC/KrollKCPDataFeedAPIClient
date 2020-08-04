@@ -55,7 +55,7 @@ class ClientTest extends TestCase {
         $since         = $today->subDays( 1 );
         $lessEndpoints = self::$client->rss( $since );
 
-        $deal = self::$client->downloadDealEndpoint( array_shift( $lessEndpoints ) );
+        $deal = self::$client->downloadDealEndpoint( array_shift( $lessEndpoints )->link );
 
         $this->assertInstanceOf( Deal::class, $deal );
     }
