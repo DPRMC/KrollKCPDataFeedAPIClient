@@ -83,12 +83,12 @@ class LoanGroup {
      * @param array $loanGroup
      */
     public function __construct( array $loanGroup ) {
-        $this->uuid                                       = $loanGroup[ 'uuid' ];
-        $this->name                                       = Helper::convertElementToString( $loanGroup[ 'name' ] );
-        $this->city                                       = Helper::convertElementToString( $loanGroup[ 'city' ] );
-        $this->state                                      = Helper::convertElementToString( $loanGroup[ 'state' ] );
-        $this->property_type                              = $loanGroup[ 'property_type' ];
-        $this->size                                       = $loanGroup[ 'size' ];
+        $this->uuid                                       = $loanGroup[ 'uuid' ] ?? NULL;
+        $this->name                                       = Helper::convertElementToString( $loanGroup[ 'name' ] ?? NULL );
+        $this->city                                       = Helper::convertElementToString( $loanGroup[ 'city' ] ?? NULL );
+        $this->state                                      = Helper::convertElementToString( $loanGroup[ 'state' ] ?? NULL );
+        $this->property_type                              = $loanGroup[ 'property_type' ] ?? NULL;
+        $this->size                                       = $loanGroup[ 'size' ] ?? NULL;
         $this->kbra_value_per_size                        = $loanGroup[ 'kbra_value_per_size' ];
         $this->kloc                                       = $loanGroup[ 'kloc' ];
         $this->kloc_reason                                = Helper::convertElementToString( $loanGroup[ 'kloc_reason' ] );
@@ -142,42 +142,52 @@ class LoanGroup {
         $this->kbra_annualized_statement_number_of_months = Helper::convertElementToString( $loanGroup[ 'kbra_annualized_statement_number_of_months' ] );
         $this->most_recent_revenue                        = $loanGroup[ 'most_recent_revenue' ];
         $this->most_recent_expenses                       = $loanGroup[ 'most_recent_expenses' ];
-        $this->most_recent_noi = $loanGroup[ 'most_recent_noi' ];
-        $this->most_recent_ncf = $loanGroup[ 'most_recent_ncf' ];
-        $this->most_recent_as_of_date = Carbon::parse( $loanGroup[ 'most_recent_as_of_date' ] );
-        $this->preceding_revenue = $loanGroup[ 'preceding_revenue' ];
-        $this->preceding_expenses = $loanGroup[ 'preceding_expenses' ];
-        $this->preceding_noi = $loanGroup[ 'preceding_noi' ];
-        $this->preceding_ncf = $loanGroup[ 'preceding_ncf' ];
-        $this->preceding_as_of_date = Carbon::parse( $loanGroup[ 'preceding_as_of_date' ] );
-        $this->kbra_commentary = Helper::convertElementToString( $loanGroup[ 'kbra_commentary' ] );
+        $this->most_recent_noi                            = $loanGroup[ 'most_recent_noi' ];
+        $this->most_recent_ncf                            = $loanGroup[ 'most_recent_ncf' ];
+        $this->most_recent_as_of_date                     = Carbon::parse( $loanGroup[ 'most_recent_as_of_date' ] );
+        $this->preceding_revenue                          = $loanGroup[ 'preceding_revenue' ];
+        $this->preceding_expenses                         = $loanGroup[ 'preceding_expenses' ];
+        $this->preceding_noi                              = $loanGroup[ 'preceding_noi' ];
+        $this->preceding_ncf                              = $loanGroup[ 'preceding_ncf' ];
+        $this->preceding_as_of_date                       = Carbon::parse( $loanGroup[ 'preceding_as_of_date' ] );
+        $this->kbra_commentary                            = Helper::convertElementToString( $loanGroup[ 'kbra_commentary' ] );
 
-
-        $loanOrLoans = $loanGroup[ 'loans' ][ 'loan' ];
-
-        if ( isset( $loanOrLoans[ 'uuid' ] ) ):
-            $this->loans[] = new Loan( $loanOrLoans );
-        else:
-            foreach ( $loanOrLoans as $loanData ):
-                $this->loans[] = new Loan( $loanData );
-            endforeach;
-        endif;
-
-
-//
-//        echo "\n\n";
-//        var_dump("count: " . count($loanGroup[ 'loans' ][ 'loan' ]));
-//        print_r(array_keys($loanGroup[ 'loans' ][ 'loan' ]));
-//
-//        if( count($loanGroup[ 'loans' ][ 'loan' ]) < 61):
-//            print_r($loanGroup[ 'loans' ][ 'loan' ]);
-////flush(); die();
-//        endif;
-//
-//        $this->loans[] = new Loan( $loanGroup[ 'loans' ][ 'loan' ] );
+        $this->setLoans( $loanGroup );
     }
 
 
+    /**
+     * @param array $loanGroup
+     */
+    protected function setLoans( array $loanGroup ) {
+        $loanOrLoans = $loanGroup[ 'loans' ][ 'loan' ];
+
+        if ( $this->hasJustOneLoan( $loanGroup ) ):
+            $this->loans[] = new Loan( $loanOrLoans );
+        else:
+            foreach ( $loanOrLoans as $i => $loanData ):
+                $this->loans[] = new Loan( $loanData );
+            endforeach;
+        endif;
+    }
+
+    /**
+     * If only one loan is present then all the fields for that one loan are jammed into the ['loans']['loan'] element.
+     * @param $loanGroup
+     * @return bool
+     */
+    private function hasJustOneLoan( $loanGroup ): bool {
+        $loanOrLoans = $loanGroup[ 'loans' ][ 'loan' ];
+        if ( isset( $loanOrLoans[ 'uuid' ] ) ):
+            return TRUE;
+        endif;
+        return FALSE;
+    }
+
+
+    /**
+     * @return bool
+     */
     public function hasMultipleLoans(): bool {
         if ( count( $this->loans ) > 1 ):
             return TRUE;

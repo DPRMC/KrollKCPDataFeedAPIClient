@@ -1,7 +1,5 @@
 <?php
 
-namespace Tests;
-
 use Carbon\Carbon;
 use DPRMC\KrollKCPDataFeedAPIClient\Client;
 use DPRMC\KrollKCPDataFeedAPIClient\Deal;
@@ -38,6 +36,7 @@ class ClientTest extends TestCase {
         $endpoints = self::$client->rss();
         $this->assertIsArray( $endpoints );
         $firstEndpoint = array_shift( $endpoints );
+
         $this->assertInstanceOf( DealEndpoint::class, $firstEndpoint );
 
         // Now get a limited set of endpoints
@@ -51,9 +50,20 @@ class ClientTest extends TestCase {
          * @var DealEndpoint $dealEndpoint
          */
         $dealEndpoint = array_shift( $lessEndpoints );
-        $deal         = self::$client->downloadDeal( $dealEndpoint->link );
+
+//        print_r($dealEndpoint->uuid);
+//        die('done deal');
+
+        $deal = self::$client->downloadDeal( $dealEndpoint->uuid );
 
         $this->assertInstanceOf( Deal::class, $deal );
+
+//        $vars = get_object_vars($deal);
+//        print_r(array_keys($vars));
+//        print_r($deal);
+
+        echo $deal;
+
     }
 
 

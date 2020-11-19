@@ -10,12 +10,17 @@ class Helper {
      * empty arrays are added as values.
      * I think this is happening when the XML value is null or blank.
      * @param $element
-     * @return string
+     * @return string|float
      */
-    public static function convertElementToString( $element ): string {
+    public static function convertElementToString( $element ) {
         if ( is_array( $element ) ):
             return implode( ' ', $element );
         endif;
+
+        if ( is_numeric( $element ) ):
+            return (float)$element;
+        endif;
+
         return (string)$element;
     }
 }

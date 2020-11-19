@@ -66,35 +66,29 @@ class Loan {
     public $servicer_commentary_period;
     public $servicer_commentary;
     public $pari_passu_details;
-//    public $properties;
-    public $property; //
+    public $properties;
+
+//    public $property; //
 
 
     public function __construct( array $loanData ) {
 
-
-//        if(! isset($loanData['uuid'])):
-//            print_r($loanData);
-//            flush(); die();
-//        endif;
-
-
-        $this->uuid                                       = $loanData[ 'uuid' ];
-        $this->appraised_value                            = $loanData[ 'appraised_value' ][ 'value' ];
-        $this->appraisal_date                             = Carbon::parse( $loanData[ 'appraisal_date' ] );
-        $this->kbra_concluded_value                       = $loanData[ 'kbra_concluded_value' ];
-        $this->valuation_method                           = $loanData[ 'valuation_method' ];
-        $this->kbra_conservative_value                    = $loanData[ 'kbra_conservative_value' ];
-        $this->conservative_valuation_method              = $loanData[ 'conservative_valuation_method' ];
-        $this->kbra_optimistic_value                      = $loanData[ 'kbra_optimistic_value' ];
-        $this->optimistic_valuation_method                = $loanData[ 'optimistic_valuation_method' ];
-        $this->name                                       = Helper::convertElementToString( $loanData[ 'name' ] );
-        $this->city                                       = Helper::convertElementToString( $loanData[ 'city' ] );
-        $this->state                                      = Helper::convertElementToString( $loanData[ 'state' ] );
-        $this->property_type                              = $loanData[ 'property_type' ];
-        $this->size                                       = $loanData[ 'size' ];
-        $this->kbra_value_per_size                        = $loanData[ 'kbra_value_per_size' ];
-        $this->current_revenue                            = $loanData[ 'current_revenue' ];
+        $this->uuid                          = $loanData[ 'uuid' ];
+        $this->appraised_value               = $loanData[ 'appraised_value' ][ 'value' ];
+        $this->appraisal_date                = Carbon::parse( $loanData[ 'appraisal_date' ] );
+        $this->kbra_concluded_value          = $loanData[ 'kbra_concluded_value' ];
+        $this->valuation_method              = $loanData[ 'valuation_method' ];
+        $this->kbra_conservative_value       = $loanData[ 'kbra_conservative_value' ];
+        $this->conservative_valuation_method = $loanData[ 'conservative_valuation_method' ];
+        $this->kbra_optimistic_value         = $loanData[ 'kbra_optimistic_value' ];
+        $this->optimistic_valuation_method   = $loanData[ 'optimistic_valuation_method' ];
+        $this->name                          = Helper::convertElementToString( $loanData[ 'name' ] );
+        $this->city                          = Helper::convertElementToString( $loanData[ 'city' ] );
+        $this->state                         = Helper::convertElementToString( $loanData[ 'state' ] );
+        $this->property_type                 = $loanData[ 'property_type' ];
+        $this->size                          = $loanData[ 'size' ];
+        $this->kbra_value_per_size           = $loanData[ 'kbra_value_per_size' ];
+        $this->current_revenue               = $loanData[ 'current_revenue' ];
         $this->current_expenses                           = $loanData[ 'current_expenses' ];
         $this->current_ncf_dscr                           = $loanData[ 'current_ncf_dscr' ];
         $this->current_ncf                                = $loanData[ 'current_ncf' ];
@@ -120,28 +114,61 @@ class Loan {
         $this->preceding_ncf                              = Helper::convertElementToString( $loanData[ 'preceding_ncf' ] );
         $this->preceding_as_of_date                       = Helper::convertElementToString( $loanData[ 'preceding_as_of_date' ] );
         $this->current_upb                                = $loanData[ 'current_upb' ];
-        $this->kltv                                       = $loanData[ 'kltv' ];
-        $this->klgd                                       = $loanData[ 'klgd' ];
-        $this->concluded_kcp_modeled_loss                 = $loanData[ 'concluded_kcp_modeled_loss' ];
-        $this->projected_total_exposure                   = $loanData[ 'projected_total_exposure' ];
-        $this->conservative_kcp_modeled_loss              = $loanData[ 'conservative_kcp_modeled_loss' ];
-        $this->optimistic_kcp_modeled_loss                = $loanData[ 'optimistic_kcp_modeled_loss' ];
-        $this->average_rent_growth                        = Helper::convertElementToString( $loanData[ 'average_rent_growth' ] );
-        $this->average_expense_growth                     = Helper::convertElementToString( $loanData[ 'average_expense_growth' ] );
-        $this->master_loan_id_trepp                       = $loanData[ 'master_loan_id_trepp' ];
-        $this->servicer_loan_id                           = $loanData[ 'servicer_loan_id' ];
-        $this->prospectus_id                              = $loanData[ 'prospectus_id' ];
-        $this->number_of_properties                       = $loanData[ 'number_of_properties' ];
-        $this->maturity_date                              = Carbon::parse( $loanData[ 'maturity_date' ] );
-        $this->servicer_status                            = Helper::convertElementToString( $loanData[ 'servicer_status' ] );
-        $this->ss                                         = $loanData[ 'ss' ];
-        $this->ss_transfer_date                           = Helper::convertElementToString( $loanData[ 'ss_transfer_date' ] );
-        $this->servicer_commentary_period                 = Helper::convertElementToString( $loanData[ 'servicer_commentary_period' ] );
-        $this->servicer_commentary                        = Helper::convertElementToString( $loanData[ 'servicer_commentary' ] );
-        $this->pari_passu_details                         = $loanData[ 'pari_passu_details' ];
+        $this->kltv                          = $loanData[ 'kltv' ];
+        $this->klgd                          = $loanData[ 'klgd' ];
+        $this->concluded_kcp_modeled_loss    = $loanData[ 'concluded_kcp_modeled_loss' ];
+        $this->projected_total_exposure      = $loanData[ 'projected_total_exposure' ];
+        $this->conservative_kcp_modeled_loss = $loanData[ 'conservative_kcp_modeled_loss' ];
+        $this->optimistic_kcp_modeled_loss   = $loanData[ 'optimistic_kcp_modeled_loss' ];
+        $this->average_rent_growth           = Helper::convertElementToString( $loanData[ 'average_rent_growth' ] );
+        $this->average_expense_growth        = Helper::convertElementToString( $loanData[ 'average_expense_growth' ] );
+        $this->master_loan_id_trepp          = $loanData[ 'master_loan_id_trepp' ];
+        $this->servicer_loan_id              = $loanData[ 'servicer_loan_id' ];
+        $this->prospectus_id                 = $loanData[ 'prospectus_id' ];
+        $this->number_of_properties          = $loanData[ 'number_of_properties' ];
+        $this->maturity_date                 = Carbon::parse( $loanData[ 'maturity_date' ] );
+        $this->servicer_status               = Helper::convertElementToString( $loanData[ 'servicer_status' ] );
+        $this->ss                            = $loanData[ 'ss' ];
+        $this->ss_transfer_date              = Helper::convertElementToString( $loanData[ 'ss_transfer_date' ] );
+        $this->servicer_commentary_period    = Helper::convertElementToString( $loanData[ 'servicer_commentary_period' ] );
+        $this->servicer_commentary           = Helper::convertElementToString( $loanData[ 'servicer_commentary' ] );
+        $this->pari_passu_details            = $loanData[ 'pari_passu_details' ];
 //        $this->properties                                 = $loanData[ 'properties' ];
-        $this->property = $loanData[ 'properties' ][ 'property' ];
+        //$this->property = $loanData[ 'properties' ][ 'property' ];
+
+//        print_r($loanData['properties']);
+//        echo "\n\nThese are the properties\n";
+
+        $this->setProperties( $loanData );
     }
 
+
+    /**
+     * @param array $loanData
+     */
+    protected function setProperties( array $loanData ) {
+        $propertyOrProperties = $loanData[ 'properties' ][ 'property' ];
+
+        if ( $this->hasJustOneProperty( $loanData ) ):
+            $this->properties[] = new Property( $propertyOrProperties );
+        else:
+            foreach ( $propertyOrProperties as $i => $loanData ):
+                $this->properties[] = new Property( $loanData );
+            endforeach;
+        endif;
+    }
+
+    /**
+     * If only one property is present then all the fields for that one property are jammed into the ['properties' ][ 'property'] element.
+     * @param $loanGroup
+     * @return bool
+     */
+    private function hasJustOneProperty( $loanGroup ): bool {
+        $propertyOrProperties = $loanGroup[ 'properties' ][ 'property' ];
+        if ( isset( $propertyOrProperties[ 'uuid' ] ) ):
+            return TRUE;
+        endif;
+        return FALSE;
+    }
 
 }

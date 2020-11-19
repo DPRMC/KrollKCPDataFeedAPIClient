@@ -4,11 +4,14 @@
     "type": "library",
     "require": {
         "php": "^7.2",
+        "ext-simplexml": "*",
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^6.0 | ^7.0",
         "nesbot/carbon": "^2.36"
     },
     "require-dev": {
-        "php-coveralls/php-coveralls": "^2.0"
+        "php-coveralls/php-coveralls": "^2.0",
+        "phpunit/phpunit": "^9"
     },
     "license": "MIT",
     "authors": [
