@@ -108,9 +108,9 @@ class LoanGroup {
         $this->additional_debt_sub_secured                = $loanGroup[ 'additional_debt_sub_secured' ];
         $this->additional_debt_sub_mezz                   = $loanGroup[ 'additional_debt_sub_mezz' ];
         $this->additional_debt_sub_unsecured              = $loanGroup[ 'additional_debt_sub_unsecured' ];
-        $this->appraised_value                            = $loanGroup[ 'appraised_value' ][ 'value' ];
-        $this->appraisal_date                             = Carbon::parse( $loanGroup[ 'appraisal_date' ] );
-        $this->kbra_concluded_value                       = $loanGroup[ 'kbra_concluded_value' ];
+        $this->appraised_value = $loanGroup[ 'appraised_value' ][ 'value' ];
+        $this->appraisal_date = Carbon::parse( $loanGroup[ 'appraisal_date' ], Helper::CARBON_TIMEZONE );
+        $this->kbra_concluded_value = $loanGroup[ 'kbra_concluded_value' ];
         $this->valuation_method                           = $loanGroup[ 'valuation_method' ];
         $this->kbra_conservative_value                    = $loanGroup[ 'kbra_conservative_value' ];
         $this->conservative_valuation_method              = $loanGroup[ 'conservative_valuation_method' ];
@@ -132,9 +132,9 @@ class LoanGroup {
         $this->current_noi                                = $loanGroup[ 'current_noi' ];
         $this->current_debt_service_amount                = $loanGroup[ 'current_debt_service_amount' ];
         $this->current_debt_yield_ncf                     = $loanGroup[ 'current_debt_yield_ncf' ];
-        $this->current_occupancy                          = $loanGroup[ 'current_occupancy' ];
-        $this->current_occupancy_as_of_date               = Carbon::parse( $loanGroup[ 'current_occupancy_as_of_date' ] );
-        $this->kbra_annualized_revenue                    = Helper::convertElementToString( $loanGroup[ 'kbra_annualized_revenue' ] );
+        $this->current_occupancy = $loanGroup[ 'current_occupancy' ];
+        $this->current_occupancy_as_of_date = Carbon::parse( $loanGroup[ 'current_occupancy_as_of_date' ], Helper::CARBON_TIMEZONE );
+        $this->kbra_annualized_revenue = Helper::convertElementToString( $loanGroup[ 'kbra_annualized_revenue' ] );
         $this->kbra_annualized_expenses                   = Helper::convertElementToString( $loanGroup[ 'kbra_annualized_expenses' ] );
         $this->kbra_annualized_ncf                        = Helper::convertElementToString( $loanGroup[ 'kbra_annualized_ncf' ] );
         $this->kbra_annualized_noi                        = Helper::convertElementToString( $loanGroup[ 'kbra_annualized_noi' ] );
@@ -143,14 +143,14 @@ class LoanGroup {
         $this->most_recent_revenue                        = $loanGroup[ 'most_recent_revenue' ];
         $this->most_recent_expenses                       = $loanGroup[ 'most_recent_expenses' ];
         $this->most_recent_noi                            = $loanGroup[ 'most_recent_noi' ];
-        $this->most_recent_ncf                            = $loanGroup[ 'most_recent_ncf' ];
-        $this->most_recent_as_of_date                     = Carbon::parse( $loanGroup[ 'most_recent_as_of_date' ] );
-        $this->preceding_revenue                          = $loanGroup[ 'preceding_revenue' ];
+        $this->most_recent_ncf = $loanGroup[ 'most_recent_ncf' ];
+        $this->most_recent_as_of_date = Carbon::parse( $loanGroup[ 'most_recent_as_of_date' ], Helper::CARBON_TIMEZONE );
+        $this->preceding_revenue = $loanGroup[ 'preceding_revenue' ];
         $this->preceding_expenses                         = $loanGroup[ 'preceding_expenses' ];
         $this->preceding_noi                              = $loanGroup[ 'preceding_noi' ];
-        $this->preceding_ncf                              = $loanGroup[ 'preceding_ncf' ];
-        $this->preceding_as_of_date                       = Carbon::parse( $loanGroup[ 'preceding_as_of_date' ] );
-        $this->kbra_commentary                            = Helper::convertElementToString( $loanGroup[ 'kbra_commentary' ] );
+        $this->preceding_ncf = $loanGroup[ 'preceding_ncf' ];
+        $this->preceding_as_of_date = Carbon::parse( $loanGroup[ 'preceding_as_of_date' ], Helper::CARBON_TIMEZONE );
+        $this->kbra_commentary = Helper::convertElementToString( $loanGroup[ 'kbra_commentary' ] );
 
         $this->setLoans( $loanGroup );
     }

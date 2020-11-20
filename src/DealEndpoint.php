@@ -34,11 +34,6 @@ class DealEndpoint {
      */
     public $uuid;
 
-    /**
-     * Used to create the link to reports for download.
-     */
-    const DOWNLOAD_LINK_PREFIX = 'https://kcp.krollbondratings.com/oauth/download/';
-
 
     /**
      * So far I have seen 3 elements in the $item array: title, link, and pubDate
@@ -48,7 +43,7 @@ class DealEndpoint {
     public function __construct( array $item ) {
         $this->title   = Helper::convertElementToString( $item[ 'title' ] );
         $this->link    = $item[ 'link' ];
-        $this->pubDate = Carbon::parse( $item[ 'pubDate' ] );
+        $this->pubDate = Carbon::parse( $item[ 'pubDate' ], Helper::CARBON_TIMEZONE );
         $this->uuid    = $this->getUuidFromLink( $item[ 'link' ] );
     }
 
@@ -69,7 +64,7 @@ class DealEndpoint {
      * @return string
      */
     public static function getDownloadLink( string $uuid ): string {
-        return self::DOWNLOAD_LINK_PREFIX . $uuid;
+        return Helper::DOWNLOAD_LINK_PREFIX . $uuid;
     }
 
 }

@@ -209,7 +209,7 @@ class Client {
      */
     public function downloadDeal( string $uuid ): Deal {
 
-        $link = 'https://kcp.krollbondratings.com/oauth/download/' . $uuid;
+        $link = Helper::DOWNLOAD_LINK_PREFIX . $uuid;
 
         $response = $this->guzzle->request( 'GET', $link, [
             'debug' => $this->debug,

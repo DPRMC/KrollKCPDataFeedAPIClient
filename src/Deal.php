@@ -34,8 +34,8 @@ class Deal {
 
     public function __construct( array $deal ) {
 
-        $this->remitDate     = Carbon::parse( $deal[ 'remit_date' ], 'America/New_York' );
-        $this->generatedDate = Carbon::parse( $deal[ 'generated_date' ], 'America/New_York' );
+        $this->remitDate     = Carbon::parse( $deal[ 'remit_date' ], Helper::CARBON_TIMEZONE );
+        $this->generatedDate = Carbon::parse( $deal[ 'generated_date' ], Helper::CARBON_TIMEZONE );
 
         $this->uuid = Helper::convertElementToString( $deal[ 'deal' ][ 'uuid' ] );
         $this->name = Helper::convertElementToString( $deal[ 'deal' ][ 'name' ] );
