@@ -31,6 +31,7 @@ class ClientTest extends TestCase {
 
     /**
      * @test
+     * @group links
      */
     public function callingRssShouldReturnLinks() {
         $endpoints = self::$client->rss();
@@ -51,16 +52,9 @@ class ClientTest extends TestCase {
          */
         $dealEndpoint = array_shift( $lessEndpoints );
 
-//        print_r($dealEndpoint->uuid);
-//        die('done deal');
-
         $deal = self::$client->downloadDeal( $dealEndpoint->uuid );
 
         $this->assertInstanceOf( Deal::class, $deal );
-
-//        $vars = get_object_vars($deal);
-//        print_r(array_keys($vars));
-//        print_r($deal);
 
         echo $deal;
 
@@ -83,6 +77,19 @@ class ClientTest extends TestCase {
         $deal = self::$client->downloadDeal( '94f746ec-f0ad-5a9b-8439-50a845a2954c' );
 
         $this->assertInstanceOf( Deal::class, $deal );
+    }
+
+
+    /**
+     * @test
+     * @group test
+     */
+    public function showLinks() {
+        $today         = Carbon::now();
+        $since         = $today->subDays( 1 );
+        $lessEndpoints = self::$client->rss( $since );
+
+        print_r( $lessEndpoints );
     }
 
 

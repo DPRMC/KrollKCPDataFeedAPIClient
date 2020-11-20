@@ -34,6 +34,9 @@ class DealEndpoint {
      */
     public $uuid;
 
+    /**
+     * Used to create the link to reports for download.
+     */
     const DOWNLOAD_LINK_PREFIX = 'https://kcp.krollbondratings.com/oauth/download/';
 
 
@@ -43,7 +46,7 @@ class DealEndpoint {
      * @param array $item
      */
     public function __construct( array $item ) {
-        $this->title   = $this->getTitleFromItem( $item );
+        $this->title   = Helper::convertElementToString( $item[ 'title' ] );
         $this->link    = $item[ 'link' ];
         $this->pubDate = Carbon::parse( $item[ 'pubDate' ] );
         $this->uuid    = $this->getUuidFromLink( $item[ 'link' ] );
@@ -51,23 +54,8 @@ class DealEndpoint {
 
 
     /**
-     * I have seen the title element get parsed as an empty array from the API.
-     * Deal with that here, because we want to save a string for the title.
-     * @param $item
-     * @return string
-     */
-    protected function getTitleFromItem( $item ): string {
-        $title = $item[ 'title' ];
-        if ( is_array( $title ) ):
-            return implode( ' ', $title );
-        endif;
-        return (string)$title;
-    }
-
-
-    /**
-     * @param string $link
-     * @return string
+     * @param string $link Ex: https://kcp.krollbondratings.com/oauth/download/76faf78d-3766-5173-94c1-bcb130479073
+     * @return string The UUID is the last element of the link parameter.
      */
     protected function getUuidFromLink( string $link ): string {
         $parts = explode( '/', $link );
@@ -76,6 +64,7 @@ class DealEndpoint {
 
 
     /**
+     * Simple concat function to create links to reports for download.
      * @param string $uuid
      * @return string
      */

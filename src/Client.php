@@ -101,6 +101,22 @@ class Client {
 
 
     /**
+     * From the KROLL docs:
+     * Note: We recommend that you initially call this end point without a SINCE date specified, to
+     * receive all the publication events currently available. For subsequent calls, you should specify
+     * the pubDate value from the RSS feed as the SINCE value. This will ensure that you only see new
+     * events since your last request.
+     * When calling without a SINCE date specified, you will only receive reports published in the
+     * previous seven (7) days.
+     *
+     * The only data of use from this endpoint comes in the 'item' array.
+     * Each 'item' contains a link to a report on a DEAL and it's publication date.
+     * The other data looks like this, and is ignored:
+     * [title]       => KCP Publication Feed
+     * [link]        => https://kcp.krollbondratings.com/oauth/rss
+     * [description] => Please contact kcphelp@kbra.com with any questions or concerns.
+     * [pubDate]     => Fri, 20 Nov 20 12:18:31 -0500
+     *
      * @param Carbon|null $since
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -123,6 +139,7 @@ class Client {
         $xml       = simplexml_load_string( $xmlString );
         $json      = json_encode( $xml );
         $array     = json_decode( $json, TRUE );
+
         $items     = $array[ 'channel' ][ 'item' ];
 
         foreach ( $items as $item ):
