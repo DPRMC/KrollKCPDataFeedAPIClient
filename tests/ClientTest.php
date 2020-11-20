@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use DPRMC\KrollKCPDataFeedAPIClient\Client;
 use DPRMC\KrollKCPDataFeedAPIClient\Deal;
 use DPRMC\KrollKCPDataFeedAPIClient\DealEndpoint;
+use DPRMC\KrollKCPDataFeedAPIClient\LoanGroup;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase {
@@ -22,10 +23,13 @@ class ClientTest extends TestCase {
 
 
     /**
+     * Of course in the set up code a client is already created, but that constructor
+     * code isn't shown as being covered in the coverage report.
      * @test
      */
     public function constructorShouldCreateClient() {
-        $this->assertInstanceOf( Client::class, self::$client );
+        $client = new Client( $_ENV[ 'KROLL_USER' ], $_ENV[ 'KROLL_PASS' ] );
+        $this->assertInstanceOf( Client::class, $client );
     }
 
 
@@ -36,61 +40,48 @@ class ClientTest extends TestCase {
     public function callingRssShouldReturnLinks() {
         $endpoints = self::$client->rss();
         $this->assertIsArray( $endpoints );
-        $firstEndpoint = array_shift( $endpoints );
 
+        /**
+         * @var DealEndpoint $firstEndpoint
+         */
+        $firstEndpoint             = array_shift( $endpoints );
+        $firstEndpointUUID         = $firstEndpoint->uuid;
+        $firstEndpointDownloadLink = DealEndpoint::getDownloadLink( $firstEndpointUUID );
         $this->assertInstanceOf( DealEndpoint::class, $firstEndpoint );
+        $this->assertIsString( $firstEndpointDownloadLink );
 
         // Now get a limited set of endpoints
         $today         = Carbon::now();
         $since         = $today->subDays( 1 );
         $lessEndpoints = self::$client->rss( $since );
-
         $this->assertLessThan( count( $endpoints ), count( $lessEndpoints ) );
 
         /**
          * @var DealEndpoint $dealEndpoint
          */
         $dealEndpoint = array_shift( $lessEndpoints );
-
-        $deal = self::$client->downloadDeal( $dealEndpoint->uuid );
-
+        $deal         = self::$client->downloadDeal( $dealEndpoint->uuid );
         $this->assertInstanceOf( Deal::class, $deal );
 
-        echo $deal;
+
+        $numBonds = $deal->getNumBonds();
+        $this->assertIsInt( $numBonds );
+
+        $numLoanGroups = $deal->getNumLoanGroups();
+        $this->assertIsInt( $numLoanGroups );
+
+        $loanGroups = $deal->loanGroups;
+        /**
+         * @var LoanGroup $loanGroup
+         */
+        $loanGroup        = array_shift( $loanGroups );
+        $hasMultipleLoans = $loanGroup->hasMultipleLoans();
+        $this->assertIsBool( $hasMultipleLoans );
+
 
     }
 
 
-    /**
-     * @test
-     * @group deal
-     */
-    public function downloadingEndpointShouldReturnDeal() {
-        $today         = Carbon::now();
-        $since         = $today->subDays( 1 );
-        $lessEndpoints = self::$client->rss( $since );
-
-        //https://kcp.krollbondratings.com/oauth/download/94f746ec-f0ad-5a9b-8439-50a845a2954c
-
-        //array_shift( $lessEndpoints )->link
-
-        $deal = self::$client->downloadDeal( '94f746ec-f0ad-5a9b-8439-50a845a2954c' );
-
-        $this->assertInstanceOf( Deal::class, $deal );
-    }
-
-
-    /**
-     * @test
-     * @group test
-     */
-    public function showLinks() {
-        $today         = Carbon::now();
-        $since         = $today->subDays( 1 );
-        $lessEndpoints = self::$client->rss( $since );
-
-        print_r( $lessEndpoints );
-    }
 
 
 }

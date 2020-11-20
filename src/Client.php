@@ -79,6 +79,7 @@ class Client {
 
 
         $response = $this->guzzle->request( 'POST', 'oauth', [
+            'debug'       => $this->debug,
             'form_params' => [
                 'grant_type'    => 'client_credentials',
                 'client_id'     => $this->clientId,
@@ -140,7 +141,7 @@ class Client {
         $json      = json_encode( $xml );
         $array     = json_decode( $json, TRUE );
 
-        $items     = $array[ 'channel' ][ 'item' ];
+        $items = $array[ 'channel' ][ 'item' ];
 
         foreach ( $items as $item ):
             $endpoints[] = new DealEndpoint( $item );
