@@ -52,8 +52,8 @@ class Deal {
         $this->projectedLossPercentageOriginalBalance = $deal[ 'projected_loss_percentage_original_balance' ];
 
         $this->bonds                       = $this->setBonds( $deal[ 'bonds' ][ 'bond' ] );
-        $this->loanGroups                  = $this->setLoanGroups( $deal[ 'loan_groups' ][ 'loan_group' ] ?? [] );
-        $this->paidOffLiquidatedLoanGroups = $this->setPaidOffLiquidatedLoanGroups( $deal[ 'paid_off_liquidated_loan_groups' ] ?? [] );
+        $this->loanGroups                  = $this->setLoanGroups( $deal );
+        $this->paidOffLiquidatedLoanGroups = $this->setPaidOffLiquidatedLoanGroups( $deal );
     }
 
 
@@ -74,7 +74,15 @@ class Deal {
         return $bonds;
     }
 
-    protected function setLoanGroups( array $loanGroupRowsOrJustOneGroup ): array {
+    protected function setLoanGroups( array $deal ): array {
+
+        // Just a bit of error checking. I have seen examples where 'loan_groups' was not set.
+        if ( !isset( $deal[ 'loan_groups' ] ) || !isset( $deal[ 'loan_groups' ][ 'loan_group' ] ) ):
+            return [];
+        endif;
+        $loanGroupRowsOrJustOneGroup = $deal[ 'loan_groups' ][ 'loan_group' ];
+
+
         $loanGroups = [];
 
         if ( LoanGroup::hasJustOneGroupInResults( $loanGroupRowsOrJustOneGroup ) ):
@@ -90,6 +98,12 @@ class Deal {
 
 
     protected function setPaidOffLiquidatedLoanGroups( array $loanGroupRowsOrJustOneGroup ): array {
+        // Just a bit of error checking. I have seen examples where 'loan_groups' was not set.
+        if ( !isset( $deal[ 'paid_off_liquidated_loan_groups' ] ) ):
+            return [];
+        endif;
+        $loanGroupRowsOrJustOneGroup = $deal[ 'paid_off_liquidated_loan_groups' ];
+
         $loanGroups = [];
 
         if ( LoanGroup::hasJustOneGroupInResults( $loanGroupRowsOrJustOneGroup ) ):

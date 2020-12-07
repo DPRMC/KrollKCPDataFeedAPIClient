@@ -75,6 +75,18 @@ class LoanGroup {
     public $preceding_as_of_date;
     public $kbra_commentary;
 
+    // Fields that only seem to be present in (Paid Off Liquidated Loan Groups) PaidOffLiquidatedLoanGroups.
+    public $master_loan_id_trepp;
+    public $servicer_loan_id;
+    public $prospectus_id;
+    public $valuation_as_of_date;
+    public $kbra_commentary_as_of_date;
+    public $maturity_date;
+    public $loss_severity_ending_balance;
+    public $loss_severity_original_balance;
+    public $disposition_type;
+    // End PaidOffLiquidatedLoanGroups fields
+
     public $loans = [];
 
 
@@ -151,6 +163,18 @@ class LoanGroup {
         $this->preceding_ncf                              = $loanGroup[ 'preceding_ncf' ] ?? NULL;
         $this->preceding_as_of_date                       = empty( $loanGroup[ 'preceding_as_of_date' ] ) ? NULL : Carbon::parse( $loanGroup[ 'preceding_as_of_date' ], Helper::CARBON_TIMEZONE );
         $this->kbra_commentary                            = Helper::convertElementToString( $loanGroup[ 'kbra_commentary' ] ?? NULL );
+
+        // Fields that only seem to be present in (Paid Off Liquidated Loan Groups) PaidOffLiquidatedLoanGroups.
+        $this->master_loan_id_trepp           = Helper::convertElementToString( $loanGroup[ 'master_loan_id_trepp' ] ?? NULL );
+        $this->servicer_loan_id               = Helper::convertElementToString( $loanGroup[ 'servicer_loan_id' ] ?? NULL );
+        $this->prospectus_id                  = Helper::convertElementToString( $loanGroup[ 'prospectus_id' ] ?? NULL );
+        $this->valuation_as_of_date           = empty( $loanGroup[ 'valuation_as_of_date' ] ) ? NULL : Carbon::parse( $loanGroup[ 'valuation_as_of_date' ], Helper::CARBON_TIMEZONE );
+        $this->kbra_commentary_as_of_date     = empty( $loanGroup[ 'kbra_commentary_as_of_date' ] ) ? NULL : Carbon::parse( $loanGroup[ 'kbra_commentary_as_of_date' ], Helper::CARBON_TIMEZONE );
+        $this->maturity_date                  = empty( $loanGroup[ 'maturity_date' ] ) ? NULL : Carbon::parse( $loanGroup[ 'maturity_date' ], Helper::CARBON_TIMEZONE );
+        $this->loss_severity_ending_balance   = Helper::convertElementToString( $loanGroup[ 'loss_severity_ending_balance' ] ?? NULL );
+        $this->loss_severity_original_balance = Helper::convertElementToString( $loanGroup[ 'loss_severity_original_balance' ] ?? NULL );
+        $this->disposition_type               = Helper::convertElementToString( $loanGroup[ 'disposition_type' ] ?? NULL );
+        // End PaidOffLiquidatedLoanGroups fields
 
         $this->setLoans( $loanGroup );
     }
