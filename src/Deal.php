@@ -52,7 +52,7 @@ class Deal {
         $this->projectedLossPercentageOriginalBalance = $deal[ 'projected_loss_percentage_original_balance' ];
 
         $this->bonds                       = $this->setBonds( $deal[ 'bonds' ][ 'bond' ] );
-        $this->loanGroups                  = $this->setLoanGroups( $deal[ 'loan_groups' ][ 'loan_group' ] );
+        $this->loanGroups                  = $this->setLoanGroups( $deal[ 'loan_groups' ][ 'loan_group' ] ?? [] );
         $this->paidOffLiquidatedLoanGroups = $this->setPaidOffLiquidatedLoanGroups( $deal[ 'paid_off_liquidated_loan_groups' ] ?? [] );
     }
 
