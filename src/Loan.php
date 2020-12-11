@@ -132,8 +132,8 @@ class Loan {
         $this->ss                                         = Helper::convertElementToString( $loanData[ 'ss' ] );
         $this->ss_transfer_date                           = Helper::convertElementToString( $loanData[ 'ss_transfer_date' ] );
         $this->servicer_commentary_period                 = Helper::convertElementToString( $loanData[ 'servicer_commentary_period' ] );
-        $this->servicer_commentary                        = Helper::convertElementToString( $loanData[ 'servicer_commentary' ] );
-        $this->pari_passu_details                         = Helper::convertElementToString( $loanData[ 'pari_passu_details' ] );
+        $this->servicer_commentary = Helper::convertElementToString( $loanData[ 'servicer_commentary' ] );
+        $this->pari_passu_details = $loanData[ 'pari_passu_details' ];
 //        $this->properties                                 = Helper::convertElementToString($loanData[ 'properties' ]);
         //$this->property = Helper::convertElementToString($loanData[ 'properties' ][ 'property' ]);
 
