@@ -30,6 +30,15 @@ class Helper {
             return (float)$element;
         endif;
 
+        $booleans = [ 'true', 'false' ];
+        if ( in_array( strtolower( $element ), $booleans ) ):
+            if ( 'true' == $element ):
+                return TRUE;
+            else:
+                return FALSE;
+            endif;
+        endif;
+
         return (string)$element;
     }
 }
