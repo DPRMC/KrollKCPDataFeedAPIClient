@@ -89,32 +89,32 @@ class Bond {
      */
     public function __construct( array $bondData ) {
 
-        $this->uuid                                  = $bondData[ 'uuid' ];
+        $this->uuid                                  = Helper::convertElementToString( $bondData[ 'uuid' ] );
         $this->name                                  = Helper::convertElementToString( $bondData[ 'name' ] );
         $this->kbra_credit_profile                   = Helper::convertElementToString( $bondData[ 'kbra_credit_profile' ] );
-        $this->closing_balance                       = $bondData[ 'closing_balance' ];
-        $this->current_balance                       = $bondData[ 'current_balance' ];
-        $this->factor                                = $bondData[ 'factor' ];
-        $this->cusip                                 = $bondData[ 'cusip' ];
-        $this->closing_ce                            = $bondData[ 'closing_ce' ];
-        $this->current_ce                            = $bondData[ 'current_ce' ];
-        $this->kbra_concluded_projected_balance      = $bondData[ 'kbra_concluded_projected_balance' ];
-        $this->kbra_concluded_ce                     = $bondData[ 'kbra_concluded_ce' ];
-        $this->kbra_concluded_ce_percent_change      = $bondData[ 'kbra_concluded_ce_percent_change' ];
-        $this->kbra_concluded_defeasance_applied     = $bondData[ 'kbra_concluded_defeasance_applied' ];
-        $this->kbra_concluded_prepayments_applied    = $bondData[ 'kbra_concluded_prepayments_applied' ];
-        $this->kbra_concluded_losses_applied         = $bondData[ 'kbra_concluded_losses_applied' ];
-        $this->kbra_conservative_projected_balance   = $bondData[ 'kbra_conservative_projected_balance' ];
-        $this->kbra_conservative_ce                  = $bondData[ 'kbra_conservative_ce' ];
-        $this->kbra_conservative_defeasance_applied  = $bondData[ 'kbra_conservative_defeasance_applied' ];
-        $this->kbra_conservative_prepayments_applied = $bondData[ 'kbra_conservative_prepayments_applied' ];
-        $this->kbra_conservative_losses_applied      = $bondData[ 'kbra_conservative_losses_applied' ];
-        $this->kbra_optimistic_projected_balance     = $bondData[ 'kbra_optimistic_projected_balance' ];
-        $this->kbra_optimistic_ce                    = $bondData[ 'kbra_optimistic_ce' ];
-        $this->kbra_optimistic_defeasance_applied    = $bondData[ 'kbra_optimistic_defeasance_applied' ];
-        $this->kbra_optimistic_prepayments_applied   = $bondData[ 'kbra_optimistic_prepayments_applied' ];
-        $this->kbra_optimistic_losses_applied        = $bondData[ 'kbra_optimistic_losses_applied' ];
-        $this->accumulated_interest_shortfalls       = $bondData[ 'accumulated_interest_shortfalls' ];
+        $this->closing_balance                       = Helper::convertElementToString( $bondData[ 'closing_balance' ] );
+        $this->current_balance                       = Helper::convertElementToString( $bondData[ 'current_balance' ] );
+        $this->factor                                = Helper::convertElementToString( $bondData[ 'factor' ] );
+        $this->cusip                                 = Helper::convertElementToString( $bondData[ 'cusip' ] );
+        $this->closing_ce                            = Helper::convertElementToString( $bondData[ 'closing_ce' ] );
+        $this->current_ce                            = Helper::convertElementToString( $bondData[ 'current_ce' ] );
+        $this->kbra_concluded_projected_balance      = Helper::convertElementToString( $bondData[ 'kbra_concluded_projected_balance' ] );
+        $this->kbra_concluded_ce                     = Helper::convertElementToString( $bondData[ 'kbra_concluded_ce' ] );
+        $this->kbra_concluded_ce_percent_change      = Helper::convertElementToString( $bondData[ 'kbra_concluded_ce_percent_change' ] );
+        $this->kbra_concluded_defeasance_applied     = Helper::convertElementToString( $bondData[ 'kbra_concluded_defeasance_applied' ] );
+        $this->kbra_concluded_prepayments_applied    = Helper::convertElementToString( $bondData[ 'kbra_concluded_prepayments_applied' ] );
+        $this->kbra_concluded_losses_applied         = Helper::convertElementToString( $bondData[ 'kbra_concluded_losses_applied' ] );
+        $this->kbra_conservative_projected_balance   = Helper::convertElementToString( $bondData[ 'kbra_conservative_projected_balance' ] );
+        $this->kbra_conservative_ce                  = Helper::convertElementToString( $bondData[ 'kbra_conservative_ce' ] );
+        $this->kbra_conservative_defeasance_applied  = Helper::convertElementToString( $bondData[ 'kbra_conservative_defeasance_applied' ] );
+        $this->kbra_conservative_prepayments_applied = Helper::convertElementToString( $bondData[ 'kbra_conservative_prepayments_applied' ] );
+        $this->kbra_conservative_losses_applied      = Helper::convertElementToString( $bondData[ 'kbra_conservative_losses_applied' ] );
+        $this->kbra_optimistic_projected_balance     = Helper::convertElementToString( $bondData[ 'kbra_optimistic_projected_balance' ] );
+        $this->kbra_optimistic_ce                    = Helper::convertElementToString( $bondData[ 'kbra_optimistic_ce' ] );
+        $this->kbra_optimistic_defeasance_applied    = Helper::convertElementToString( $bondData[ 'kbra_optimistic_defeasance_applied' ] );
+        $this->kbra_optimistic_prepayments_applied   = Helper::convertElementToString( $bondData[ 'kbra_optimistic_prepayments_applied' ] );
+        $this->kbra_optimistic_losses_applied        = Helper::convertElementToString( $bondData[ 'kbra_optimistic_losses_applied' ] );
+        $this->accumulated_interest_shortfalls       = Helper::convertElementToString( $bondData[ 'accumulated_interest_shortfalls' ] );
     }
 
 
