@@ -51,7 +51,14 @@ class Deal {
         $this->projectedLossPercentageCurrentBalance  = $deal[ 'projected_loss_percentage_current_balance' ];
         $this->projectedLossPercentageOriginalBalance = $deal[ 'projected_loss_percentage_original_balance' ];
 
-        $this->bonds                       = $this->setBonds( $deal[ 'bonds' ][ 'bond' ] );
+
+        if ( is_array( $deal[ 'bonds' ][ 'bond' ] ) ):
+            $this->bonds = $this->setBonds( $deal[ 'bonds' ][ 'bond' ] );
+        else:
+            mail( 'michaeldrennen74@gmail.com', "KROLL NON ARRAY BOND", print_r( $deal, TRUE ) );
+        endif;
+
+
         $this->loanGroups                  = $this->setLoanGroups( $deal );
         $this->paidOffLiquidatedLoanGroups = $this->setPaidOffLiquidatedLoanGroups( $deal );
     }
@@ -69,7 +76,12 @@ class Deal {
     protected function setBonds( array $bondRows ): array {
         $bonds = [];
         foreach ( $bondRows as $bondRow ):
-            $bonds[] = new Bond( $bondRow );
+
+            if ( is_array( $bondRow ) ):
+                $bonds[] = new Bond( $bondRow );
+            else:
+                mail( 'michaeldrennen74@gmail.com', "KROLLLLLLL NON ARRAY BOND", print_r( $bondRows, TRUE ) );
+            endif;
         endforeach;
         return $bonds;
     }
