@@ -2,6 +2,13 @@
     "name": "dprmc/kroll-kcp-data-feed-api-client",
     "description": "A PHP client library to interface with the Kroll KCP Data Feed API.",
     "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "michaeldrennen",
+            "email": "michaeldrennen74@gmail.com"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "ext-simplexml": "*",
@@ -13,13 +20,6 @@
         "php-coveralls/php-coveralls": "^2.0",
         "phpunit/phpunit": "^9"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "michaeldrennen",
-            "email": "michaeldrennen74@gmail.com"
-        }
-    ],
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
