@@ -1,6 +1,5 @@
 /vendor/
 /build/
-/docs/
 phpunit.xml
 .env
 .idea
