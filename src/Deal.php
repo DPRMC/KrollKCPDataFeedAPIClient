@@ -77,8 +77,6 @@ class Deal {
 
             if ( is_array( $bondRow ) ):
                 $bonds[] = new Bond( $bondRow );
-            else:
-                mail( 'michaeldrennen74@gmail.com', "KROLLLLLLL NON ARRAY BOND", print_r( $bondRows, TRUE ) );
             endif;
         endforeach;
         return $bonds;
