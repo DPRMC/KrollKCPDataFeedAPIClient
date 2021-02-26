@@ -11,22 +11,22 @@ class Deal {
     /**
      * @var Carbon
      */
-    public $remitDate;
-    public $generatedDate;
+    public $remit_date;
+    public $generated_date;
 
     // Under the ['deal'] array
     public $uuid; // Ex: ecce6d9d-1938-5a43-8edc-cae17439e097
     public $name; // Ex: ?
 
-    public $leadAnalyst;
-    public $leadAnalystEmail;
-    public $leadAnalystPhoneNumber;
-    public $backupAnalyst;
-    public $backupAnalystEmail;
-    public $backupAnalystPhoneNumber;
+    public $lead_analyst;
+    public $lead_analyst_email;
+    public $lead_analyst_phone_number;
+    public $backup_analyst;
+    public $backup_analyst_email;
+    public $backup_analyst_phone_number;
 
-    public $projectedLossPercentageCurrentBalance;
-    public $projectedLossPercentageOriginalBalance;
+    public $projected_loss_percentage_current_balance;
+    public $projected_loss_percentage_original_balance;
 
     public $bonds      = [];
     public $loanGroups = [];
@@ -34,22 +34,22 @@ class Deal {
 
     public function __construct( array $deal ) {
 
-        $this->remitDate     = Carbon::parse( $deal[ 'remit_date' ], Helper::CARBON_TIMEZONE );
-        $this->generatedDate = Carbon::parse( $deal[ 'generated_date' ], Helper::CARBON_TIMEZONE );
+        $this->remit_date     = Carbon::parse( $deal[ 'remit_date' ], Helper::CARBON_TIMEZONE );
+        $this->generated_date = Carbon::parse( $deal[ 'generated_date' ], Helper::CARBON_TIMEZONE );
 
         $this->uuid = Helper::convertElementToString( $deal[ 'deal' ][ 'uuid' ] );
         $this->name = Helper::convertElementToString( $deal[ 'deal' ][ 'name' ] );
 
-        $this->leadAnalyst            = Helper::convertElementToString( $deal[ 'lead_analyst' ] );
-        $this->leadAnalystEmail       = Helper::convertElementToString( $deal[ 'lead_analyst_email' ] );
-        $this->leadAnalystPhoneNumber = Helper::convertElementToString( $deal[ 'lead_analyst_phone_number' ] );
+        $this->lead_analyst              = Helper::convertElementToString( $deal[ 'lead_analyst' ] );
+        $this->lead_analyst_email        = Helper::convertElementToString( $deal[ 'lead_analyst_email' ] );
+        $this->lead_analyst_phone_number = Helper::convertElementToString( $deal[ 'lead_analyst_phone_number' ] );
 
-        $this->backupAnalyst            = Helper::convertElementToString( $deal[ 'backup_analyst' ] );
-        $this->backupAnalystEmail       = Helper::convertElementToString( $deal[ 'backup_analyst_email' ] );
-        $this->backupAnalystPhoneNumber = Helper::convertElementToString( $deal[ 'backup_analyst_phone_number' ] );
+        $this->backup_analyst              = Helper::convertElementToString( $deal[ 'backup_analyst' ] );
+        $this->backup_analyst_email        = Helper::convertElementToString( $deal[ 'backup_analyst_email' ] );
+        $this->backup_analyst_phone_number = Helper::convertElementToString( $deal[ 'backup_analyst_phone_number' ] );
 
-        $this->projectedLossPercentageCurrentBalance  = $deal[ 'projected_loss_percentage_current_balance' ];
-        $this->projectedLossPercentageOriginalBalance = $deal[ 'projected_loss_percentage_original_balance' ];
+        $this->projected_loss_percentage_current_balance  = $deal[ 'projected_loss_percentage_current_balance' ];
+        $this->projected_loss_percentage_original_balance = $deal[ 'projected_loss_percentage_original_balance' ];
 
 
         if ( is_array( $deal[ 'bonds' ][ 'bond' ] ) ):

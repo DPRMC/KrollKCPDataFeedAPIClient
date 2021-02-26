@@ -17,7 +17,7 @@ class DealToString {
         $string .= "\n";
         $string .= "name: " . $deal->name;
         $string .= "\n";
-        $string .= "remit date: " . $deal->remitDate->toCookieString();
+        $string .= "remit date: " . $deal->remit_date->toCookieString();
 
         return $string;
     }
