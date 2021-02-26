@@ -41,9 +41,6 @@ class ClientTest extends TestCase {
         $endpoints = self::$client->rss();
         $this->assertIsArray( $endpoints );
 
-        print_r( $endpoints );
-        die( 'endpoints1' );
-
         /**
          * @var DealEndpoint $firstEndpoint
          */
