@@ -54,8 +54,6 @@ class Deal {
 
         if ( is_array( $deal[ 'bonds' ][ 'bond' ] ) ):
             $this->bonds = $this->setBonds( $deal[ 'bonds' ][ 'bond' ] );
-        else:
-            mail( 'michaeldrennen74@gmail.com', "KROLL NON ARRAY BOND", print_r( $deal, TRUE ) );
         endif;
 
 
