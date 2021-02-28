@@ -26,7 +26,7 @@ class DealEndpoint {
     /**
      * @var Carbon The date and time that this report was published.
      */
-    public $pubDate;
+    public $pub_date;
 
 
     /**
@@ -41,10 +41,10 @@ class DealEndpoint {
      * @param array $item
      */
     public function __construct( array $item ) {
-        $this->title   = Helper::convertElementToString( $item[ 'title' ] );
-        $this->link    = $item[ 'link' ];
-        $this->pubDate = Carbon::parse( $item[ 'pubDate' ], Helper::CARBON_TIMEZONE );
-        $this->uuid    = $this->getUuidFromLink( $item[ 'link' ] );
+        $this->title    = Helper::convertElementToString( $item[ 'title' ] );
+        $this->link     = $item[ 'link' ];
+        $this->pub_date = Carbon::parse( $item[ 'pubDate' ], Helper::CARBON_TIMEZONE );
+        $this->uuid     = $this->getUuidFromLink( $item[ 'link' ] );
     }
 
 
