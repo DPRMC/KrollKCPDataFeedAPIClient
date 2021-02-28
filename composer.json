@@ -13,6 +13,7 @@
         "php": "^7.2",
         "ext-simplexml": "*",
         "ext-json": "*",
+        "ext-libxml": "*",
         "guzzlehttp/guzzle": "^6.0 | ^7.0",
         "nesbot/carbon": "^2.36"
     },

@@ -3,7 +3,6 @@
 namespace DPRMC\KrollKCPDataFeedAPIClient;
 
 use Carbon\Carbon;
-use GuzzleHttp\Psr7\Request;
 
 class Client {
 
@@ -137,8 +136,8 @@ class Client {
         ] );
 
         $xmlString = $response->getBody();
-        $xml       = simplexml_load_string( $xmlString );
-        $json      = json_encode( $xml );
+        $xml       = simplexml_load_string( $xmlString, NULL, LIBXML_NOCDATA );
+        $json      = json_encode( (array)$xml );
         $array     = json_decode( $json, TRUE );
 
         $items = $array[ 'channel' ][ 'item' ];
@@ -167,8 +166,8 @@ class Client {
         ] );
 
         $xmlString = $response->getBody();
-        $xml       = simplexml_load_string( $xmlString );
-        $json      = json_encode( $xml );
+        $xml       = simplexml_load_string( $xmlString, NULL, LIBXML_NOCDATA );
+        $json      = json_encode( (array)$xml );
         $array     = json_decode( $json, TRUE );
 
         return new Deal( $array );
