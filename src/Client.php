@@ -151,65 +151,12 @@ class Client {
     }
 
 
-//    public function downloadDeal( string $uuid ) {
-//        $link     = 'oauth/download/' . $uuid;
-//        $response = $this->guzzle->request( 'GET', $link, [
-//            'debug' => $this->debug,
-//            'query' => [
-//                'access_token' => $this->accessToken,
-//            ],
-//        ] );
-//
-//        $xmlString = $response->getBody();
-//        $xml       = simplexml_load_string( $xmlString );
-//        $json      = json_encode( $xml );
-//        $array     = json_decode( $json, TRUE );
-//
-//
-//        return new Deal( $array );
-//
-//        foreach ( $array as $key => $value ):
-//            if ( is_array( $value ) ):
-//                $count = count( $value );
-//            else:
-//                $count = $value;
-//            endif;
-//            echo "\n\n $key: " . $count;
-//        endforeach;
-//
-//
-//        echo "\n\ndeal index";
-//        foreach ( $array[ 'deal' ] as $key => $value ):
-//            if ( is_array( $value ) ):
-//                $count = count( $value );
-//            else:
-//                $count = $value;
-//            endif;
-//            echo "\n $key: " . $count;
-//        endforeach;
-//
-//
-//        echo "\n\nbonds index";
-//        foreach ( $array[ 'bonds' ] as $key => $value ):
-//            if ( is_array( $value ) ):
-//                $count = count( $value );
-//            else:
-//                $count = $value;
-//            endif;
-//            echo "\n $key: " . $count;
-//        endforeach;
-//
-////        print_r($array);
-//    }
-
-
     /**
      * @param string $uuid
      * @return Deal
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function downloadDeal( string $uuid ): Deal {
-
         $link = Helper::DOWNLOAD_LINK_PREFIX . $uuid;
 
         $response = $this->guzzle->request( 'GET', $link, [

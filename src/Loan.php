@@ -68,9 +68,11 @@ class Loan {
     public $pari_passu_details;
     public $properties;
 
-//    public $property; //
 
-
+    /**
+     * Loan constructor.
+     * @param array $loanData
+     */
     public function __construct( array $loanData ) {
 
         $this->uuid                          = $loanData[ 'uuid' ];
@@ -134,11 +136,6 @@ class Loan {
         $this->servicer_commentary_period                 = Helper::convertElementToString( $loanData[ 'servicer_commentary_period' ] );
         $this->servicer_commentary                        = Helper::convertElementToString( $loanData[ 'servicer_commentary' ] );
         $this->pari_passu_details                         = $loanData[ 'pari_passu_details' ];
-//        $this->properties                                 = Helper::convertElementToString($loanData[ 'properties' ]);
-        //$this->property = Helper::convertElementToString($loanData[ 'properties' ][ 'property' ]);
-
-//        print_r($loanData['properties']);
-//        echo "\n\nThese are the properties\n";
 
         $this->setProperties( $loanData );
     }

@@ -41,10 +41,10 @@ class DealEndpoint {
      * @param array $item
      */
     public function __construct( array $item ) {
-        $this->title    = Helper::convertElementToString( $item[ 'title' ] );
-        $this->link     = $item[ 'link' ];
-        $this->pub_date = Carbon::parse( $item[ 'pubDate' ], Helper::CARBON_TIMEZONE );
-        $this->uuid     = $this->getUuidFromLink( $item[ 'link' ] );
+        $this->title    = isset( $item[ 'title' ] ) ? Helper::convertElementToString( $item[ 'title' ] ) : NULL;
+        $this->link     = isset( $item[ 'link' ] ) ? $item[ 'link' ] : NULL;
+        $this->pub_date = isset( $item[ 'pubDate' ] ) ? Carbon::parse( $item[ 'pubDate' ], Helper::CARBON_TIMEZONE ) : NULL;
+        $this->uuid     = isset( $item[ 'link' ] ) ? $this->getUuidFromLink( $item[ 'link' ] ) : NULL;
     }
 
 

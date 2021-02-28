@@ -11,9 +11,13 @@ class ClientTest extends TestCase {
 
     protected static $client;
 
+    protected static $debug = FALSE;
+
 
     public static function setUpBeforeClass(): void {
-        self::$client = new Client( $_ENV[ 'KROLL_USER' ], $_ENV[ 'KROLL_PASS' ] );
+        self::$client = new Client( $_ENV[ 'KROLL_USER' ],
+                                    $_ENV[ 'KROLL_PASS' ],
+                                    self::$debug );
     }
 
 
@@ -35,7 +39,7 @@ class ClientTest extends TestCase {
 
     /**
      * @test
-     * @group links
+     * @group links2
      */
     public function callingRssShouldReturnLinks() {
         $endpoints = self::$client->rss();
@@ -80,8 +84,6 @@ class ClientTest extends TestCase {
 
 
     }
-
-
 
 
 }
