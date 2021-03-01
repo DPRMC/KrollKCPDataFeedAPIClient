@@ -90,8 +90,9 @@ class Client {
          * {"access_token":"4ee0eec5250e729d3ae8f85c6a385dc82e91146f","expires_in":120,"token_type":"Bearer","scope":null}
          */
 
-        $json  = $response->getBody();
-        $array = json_decode( $json, TRUE );
+        $json     = $response->getBody();
+        $response = NULL; // Free up memory
+        $array    = json_decode( $json, TRUE );
 
         $this->accessToken = $array[ 'access_token' ];
         $this->expiresIn   = $array[ 'expires_in' ];
@@ -136,6 +137,7 @@ class Client {
         ] );
 
         $xmlString = $response->getBody();
+        $response  = NULL; // Free up memory
         $xml       = simplexml_load_string( $xmlString, NULL, LIBXML_NOCDATA );
         $json      = json_encode( (array)$xml );
         $array     = json_decode( $json, TRUE );
@@ -166,6 +168,7 @@ class Client {
         ] );
 
         $xmlString = $response->getBody();
+        $response  = NULL;
         $xml       = simplexml_load_string( $xmlString, NULL, LIBXML_NOCDATA );
         $json      = json_encode( (array)$xml );
         $array     = json_decode( $json, TRUE );
