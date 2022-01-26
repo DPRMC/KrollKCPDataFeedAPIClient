@@ -10,16 +10,16 @@
         }
     ],
     "require": {
-        "php": "^7.2||^8.0",
+        "php": "^7.2|^8.0",
         "ext-simplexml": "*",
         "ext-json": "*",
         "ext-libxml": "*",
-        "guzzlehttp/guzzle": "^6.0 | ^7.0",
-        "nesbot/carbon": "^2.36"
+        "guzzlehttp/guzzle": "^6.0|^7.0",
+        "nesbot/carbon": "^2.0"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.0",
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9.0"
     },
     "minimum-stability": "stable",
     "autoload": {
