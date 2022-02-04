@@ -94,9 +94,15 @@ class Client {
         $response = NULL; // Free up memory
         $array    = json_decode( $json, TRUE );
 
+//        $this->accessToken = $array[ 'access_token' ];
+//        $this->expiresIn   = $array[ 'expires_in' ];
+//        $this->tokenType   = $array[ 'token_type' ];
+//        $this->scope       = $array[ 'scope' ];
+
+        // 2022-02-04:mdd They updated the names of the data they return.
         $this->accessToken = $array[ 'access_token' ];
-        $this->expiresIn   = $array[ 'expires_in' ];
-        $this->tokenType   = $array[ 'token_type' ];
+        $this->expiresIn   = $array[ 'expires' ];
+        $this->tokenType   = $array[ 'type' ];
         $this->scope       = $array[ 'scope' ];
     }
 
