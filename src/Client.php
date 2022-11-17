@@ -143,10 +143,19 @@ class Client {
         ] );
 
         $xmlString = $response->getBody();
-        $response  = NULL; // Free up memory
-        $xml       = simplexml_load_string( $xmlString, NULL, LIBXML_NOCDATA );
-        $json      = json_encode( (array)$xml );
-        $array     = json_decode( $json, TRUE );
+
+        $xml      = simplexml_load_string( $xmlString, NULL, LIBXML_NOCDATA );
+        $json     = json_encode( (array)$xml );
+        $array    = json_decode( $json, TRUE );
+
+        // 2022-11-17:mdd This request started returning no rows today.
+        // We can still authenticate.
+        // An email has been sent to Kroll to find out what is going on.
+        if ( ! isset( $array[ 'channel' ] ) ):
+            throw new \Exception("The 'channel' index was missing from the array. Response code: [" . $response->getStatusCode() . "] So maybe there were just now rows." );
+        endif;
+
+        $response = NULL; // Free up memory
 
         $items = $array[ 'channel' ][ 'item' ];
 
