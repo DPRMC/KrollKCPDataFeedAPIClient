@@ -31,7 +31,8 @@ class Helper {
         endif;
 
         $booleans = [ 'true', 'false' ];
-        if ( in_array( strtolower( $element ), $booleans ) ):
+        // PHP Deprecated:  strtolower(): Passing null to parameter #1 ($string) of type string is deprecated in ../src/Helper.php on line 34
+        if ( in_array( strtolower( $element ?? '' ), $booleans ) ):
             if ( 'true' == $element ):
                 return TRUE;
             else:

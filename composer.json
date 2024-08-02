@@ -14,12 +14,12 @@
         "ext-simplexml": "*",
         "ext-json": "*",
         "ext-libxml": "*",
-        "guzzlehttp/guzzle": "^6.0|^7.0",
-        "nesbot/carbon": "^2.0"
+        "guzzlehttp/guzzle": "^6|^7|^8",
+        "nesbot/carbon": "^2|^3"
     },
     "require-dev": {
-        "php-coveralls/php-coveralls": "^2.0",
-        "phpunit/phpunit": "^9.0"
+        "php-coveralls/php-coveralls": "^2",
+        "phpunit/phpunit": "^9|^10|^11"
     },
     "minimum-stability": "stable",
     "autoload": {

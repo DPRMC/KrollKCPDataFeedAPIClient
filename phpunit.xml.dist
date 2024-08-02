@@ -29,7 +29,7 @@
     </logging>
 
     <php>
-        <env name="KROLL_USER" value="username"/>
-        <env name="KROLL_PASS" value="password"/>
+        <env name="KROLL_USER" value="user"/>
+        <env name="KROLL_PASS" value="pass"/>
     </php>
 </phpunit>
